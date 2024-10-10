@@ -6,10 +6,30 @@ const ImcCalc = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
 
+  // LIMPA O FORMULÁRIO
   const ClearForm = (event) => {
     event.preventDefault();
     setHeight("");
     setWeight("");
+  };
+
+  // VALIDA OS DIGITOS DO USUÁRIO
+  const validDigits = (text) => {
+    return text.replace(/[^0-9,]/g, "");
+  };
+
+  // VALIDA ALTURA
+  const handleHeightChange = (event) => {
+    const updateValue = validDigits(event.target.value);
+
+    setHeight(updateValue);
+  };
+
+  // VALIDA PESO
+  const handleWeightChange = (event) => {
+    const updateValue = validDigits(event.target.value);
+
+    setWeight(updateValue);
   };
 
   return (
@@ -24,7 +44,7 @@ const ImcCalc = () => {
               name="height"
               id="height"
               placeholder="Exemplo: 1,75"
-              onChange={(event) => setHeight(event.target.value)}
+              onChange={(event) => handleHeightChange(event)}
               value={height}
             />
           </div>
@@ -35,7 +55,7 @@ const ImcCalc = () => {
               name="weight"
               id="weight"
               placeholder="Exemplo: 70,5"
-              onChange={(event) => setWeight(event.target.value)}
+              onChange={(event) => handleWeightChange(event)}
               value={weight}
             />
           </div>

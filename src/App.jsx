@@ -16,9 +16,15 @@ function App() {
     const heightValue = +height.replace(",", ".");
     const weightValue = +weight.replace(",", ".");
 
-    const imc = (weightValue / (heightValue * heightValue)).toFixed(1);
+    const imcResult = (weightValue / (heightValue * heightValue)).toFixed(1);
 
-    setImc(imc);
+    setImc(imcResult);
+    data.forEach((item) => {
+      if (imcResult >= item.min && imcResult <= item.max) {
+        setInfo(item.info);
+        setInfoClass(item.infoClass);
+      }
+    });
     console.log(`O IMC é ${imc}`);
   };
 
@@ -31,7 +37,7 @@ function App() {
       {!imc ? (
         <ImcCalc calcImcParameter={calcImcFunction} />
       ) : (
-        <ImcTable data={data} />
+        <ImcTable data={data} imc={imc} info={info} infoClass={infoClass} />
       )}
     </div>
   );

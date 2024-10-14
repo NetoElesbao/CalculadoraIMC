@@ -2,7 +2,6 @@ import "./Button.css";
 
 const Button = ({ id, text, action }) => {
   const handleAction = (event) => {
-    // event.preventDefault();
     action(event);
   };
 

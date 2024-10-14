@@ -25,7 +25,16 @@ function App() {
         setInfoClass(item.infoClass);
       }
     });
-    console.log(`O IMC é ${imc}`);
+
+    if (!info) return;
+  };
+
+  const resetCalc = (event) => {
+    event.preventDefault();
+
+    setImc("");
+    setInfo("");
+    setInfoClass("");
   };
 
   const [imc, setImc] = useState("");
@@ -37,7 +46,13 @@ function App() {
       {!imc ? (
         <ImcCalc calcImcParameter={calcImcFunction} />
       ) : (
-        <ImcTable data={data} imc={imc} info={info} infoClass={infoClass} />
+        <ImcTable
+          data={data}
+          imc={imc}
+          info={info}
+          infoClass={infoClass}
+          resetCalc={resetCalc}
+        />
       )}
     </div>
   );
